@@ -7,6 +7,10 @@ set -e
 # Load up the release information
 . /etc/lsb-release
 
+case "$DISTRIB_CODENAME" in
+  luna) DISTRIB_CODENAME=precise;;
+esac
+
 REPO_DEB_URL="http://apt.puppetlabs.com/puppetlabs-release-${DISTRIB_CODENAME}.deb"
 
 #--------------------------------------------------------------------
@@ -42,4 +46,4 @@ echo "Puppet installed!"
 echo "Installing RubyGems..."
 apt-get install -y rubygems >/dev/null
 gem install --no-ri --no-rdoc rubygems-update
-update_rubygems >/dev/null
+update_rubygems >/dev/null 2>&1
