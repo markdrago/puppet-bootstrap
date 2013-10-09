@@ -9,6 +9,7 @@ set -e
 
 case "$DISTRIB_CODENAME" in
   luna) DISTRIB_CODENAME=precise;;
+  saucy) DISTRIB_CODENAME=raring;;
 esac
 
 REPO_DEB_URL="http://apt.puppetlabs.com/puppetlabs-release-${DISTRIB_CODENAME}.deb"
