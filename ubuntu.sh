@@ -8,7 +8,9 @@ set -e
 . /etc/lsb-release
 
 case "$DISTRIB_CODENAME" in
-  luna) DISTRIB_CODENAME=precise;;
+  luna|maya) DISTRIB_CODENAME=precise;;
+  nadia) DISTRIB_CODENAME=quantal;;
+  olivia) DISTRIB_CODENAME=raring;;
   saucy) DISTRIB_CODENAME=raring;;
 esac
 
