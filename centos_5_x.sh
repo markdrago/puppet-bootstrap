@@ -20,5 +20,6 @@ rpm -i ${repo_path} >/dev/null
 # Install Puppet...
 echo "Installing puppet"
 yum install -y puppet > /dev/null
+gem install --no-ri --no-rdoc deep_merge
 
 echo "Puppet installed!"
