@@ -3,6 +3,14 @@
 # This bootstraps Puppet on Debian
 set -e
 
+# Do the initial apt-get update
+echo "Initial apt-get update..."
+apt-get update >/dev/null
+
+# Older versions of Debian don't have lsb_release by default, so 
+# install that if we have to.
+which lsb_release || apt-get install -y lsb-release
+
 # Load up the release information
 DISTRIB_CODENAME=$(lsb_release -c -s)
 
@@ -16,10 +24,6 @@ if [ "$EUID" -ne "0" ]; then
   exit 1
 fi
 
-# Do the initial apt-get update
-echo "Initial apt-get update..."
-apt-get update >/dev/null
-
 # Install wget if we have to (some older Debian versions)
 echo "Installing wget..."
 apt-get install -y wget >/dev/null
@@ -27,8 +31,8 @@ apt-get install -y wget >/dev/null
 # Install the PuppetLabs repo
 echo "Configuring PuppetLabs repo..."
 repo_deb_path=$(mktemp)
-wget --output-document=${repo_deb_path} ${REPO_DEB_URL} 2>/dev/null
-dpkg -i ${repo_deb_path} >/dev/null
+wget --output-document="${repo_deb_path}" "${REPO_DEB_URL}" 2>/dev/null
+dpkg -i "${repo_deb_path}" >/dev/null
 apt-get update >/dev/null
 
 # Install Puppet
