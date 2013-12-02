@@ -38,6 +38,5 @@ apt-get update >/dev/null
 # Install Puppet
 echo "Installing Puppet..."
 apt-get install -y puppet >/dev/null
-gem install --no-ri --no-rdoc deep_merge
 
 echo "Puppet installed!"
